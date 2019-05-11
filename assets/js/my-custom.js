@@ -39,7 +39,7 @@ $(function () {
         $('#menu_id').val('');
         $('#url').val('');
         $('#icon').val('');
-        $('#is_active').val('');
+        $('#is_active').val('1');
     });
 
     $('.showModalEditSub').on('click', function (sm) {
