@@ -102,7 +102,7 @@ class Menu extends CI_Controller
     public function updatesubmenu()
     {
         $this->load->model('Menu_model', 'menu');
-        $this->menu->updateMenu();
+        $this->menu->updateSubMenu();
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">The menu was <b>successfully</b> updated!</div>');
         redirect('menu/submenu');
     }
