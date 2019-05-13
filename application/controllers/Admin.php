@@ -125,19 +125,19 @@ class Admin extends CI_Controller
         redirect('admin/list');
     }
 
-    public function memberActive()
+    public function changememberActive()
     {
-        $user_id = $this->input->post('userId');
+        $member_id = $this->input->post('memberId');
+        $member_active = $this->input->post('memberActive');
 
-        $result = $this->db->get_where('user', $user_id);
         $data = [
-            'menu_id' => $menu_id
+            'id' => $member_id,
+            'is_active' => $member_active
         ];
-        if ($result->num_rows() < 1) {
-            $this->db->update('user', $data);
-        } else {
-            $this->db->update('user', $data);
-        }
+
+        $this->db->set('is_active', $data['is_active']);
+        $this->db->where('id', $data['id']);
+        $this->db->update('user'); // gives UPDATE mytable SET field = field+1 WHERE id = 2
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Member active Changed!</div>');
     }
