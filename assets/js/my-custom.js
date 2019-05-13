@@ -1,4 +1,4 @@
-$(function () {
+$(function (Menu) {
 
     //Menu--------------
     $('.addMenuButton').on('click', function (m) {
@@ -70,6 +70,10 @@ $(function () {
 
     });
 
+});
+
+$(function (Admin) {
+
     //Admin-Role--------------
     $('.addAdminRoleButton').on('click', function (r) {
         $('#adminRoleModalLabel').html('Add New Role');
@@ -99,8 +103,12 @@ $(function () {
 
     });
 
+});
+
+$(function (Event) {
+
     //Events--------------
-    $('.addEventButton').on('click', function (ev) {
+    $('.addEventButton').on('click', function () {
 
         $('#eventModalLabel').html('Add New Event');
         $('.modal-footer button[type=submit]').html('Add');
@@ -114,7 +122,7 @@ $(function () {
         $('#is_active').val(1);
     });
 
-    $('.showModalEditEvent').on('click', function (ev) {
+    $('.showModalEditEvent').on('click', function () {
 
         $('#eventModalLabel').html('Edit Events');
         $('.modal-footer button[type=submit]').html('Update');
@@ -142,30 +150,136 @@ $(function () {
     });
 
     //Info Event--------------
-    $('.infoEventModal').on('click', function (ev) {
+    $('.infoEventModal').on('click', function () {
 
         $('#infoEventModalLabel').html('Info Events');
         $('#name2').html('Namanya');
 
-        // const id = $(this).data('id');
+        const id = $(this).data('id');
 
-        // $.ajax({
-        //     url: 'http://localhost/web-sate/events/geteditevent',
-        //     data: { id: id },
-        //     method: 'post',
-        //     dataType: 'json',
-        //     success: function (data) {
-        //         $("#id").text(data.id);
-        //         $("#user_id").text(data.user_id);
-        //         $("#name").text(data.name);
-        //         $('#date').text(data.date);
-        //         $('#location').text(data.location);
-        //         $('#address').text(data.address);
-        //         $('#phone').text(data.phone);
-        //         $('#is_active').text(data.is_active);
-        //     }
-        // });
+        $.ajax({
+            url: 'http://localhost/web-sate/events/geteditevent',
+            data: { id: id },
+            method: 'post',
+            dataType: 'json',
+            success: function (data) {
+                $("#name2").html(data.event);
+                $('#date2').html(data.date);
+                $('#location2').html(data.location);
+                $('#address2').html(data.address);
+                $('#phone2').html(data.phone);
+                $('#is_active').html(data.is_active);
+            }
+        });
 
     });
 
+});
+
+$(function () { //Ticket--------------
+
+    // Add Ticket--------------
+    $('.addTicketButton').on('click', function (r) {
+        $('#ticketModalLabel').html('Add New Ticket');
+        $('.modal-footer button[type=submit]').html('Add');
+        $('#event_id').val('');
+        $('#ticket').val('');
+        $('#price').val('');
+        $('#total').val('');
+        $('#is_active').val(1);
+    });
+
+    // Edit Ticket--------------
+    $('.showEditTicketModal').on('click', function (r) {
+
+        $('#ticketModalLabel').html('Edit Ticket');
+        $('.modal-footer button[type=submit]').html('Update');
+        $('.modal-content form').attr('action', 'http://localhost/web-sate/tickets/updateticket');
+
+        const id = $(this).data('id');
+
+        $.ajax({
+            url: 'http://localhost/web-sate/tickets/geteditticket',
+            data: { id: id },
+            method: 'post',
+            dataType: 'json',
+            success: function (data) {
+                $('#id').val(data.id);
+                $('#event_id').val(data.event_id);
+                $('#ticket').val(data.ticket);
+                $('#price').val(data.price);
+                $('#total').val(data.total);
+                $('#is_active').val(data.is_active);
+            }
+        });
+
+    });
+
+    // Edit Ticket--------------
+    $('.showInfoTicketModal').on('click', function (r) {
+
+        $('#infoTicketModalLabel').html('Info Ticket');
+        $('.modal-footer button[type=submit]').html('Update');
+        $('.modal-content form').attr('action', 'http://localhost/web-sate/tickets/updateticket');
+
+        const id = $(this).data('id');
+
+        $.ajax({
+            url: 'http://localhost/web-sate/tickets/geteditticket',
+            data: { id: id },
+            method: 'post',
+            dataType: 'json',
+            success: function (data) {
+                $('#event2').html(data.event_id);
+                $('#ticket2').html(data.ticket);
+                $('#price2').html(data.price);
+                $('#total2').html(data.total);
+                $('#is_active').html(data.is_active);
+            }
+        });
+
+    });
+
+});
+
+// Member Active----------------
+$(function () {
+    $('.member_active').on('click', function () {
+
+        const memberId = $(this).data('member');
+
+        if ($('.member_active').attr('checked') == "checked") {
+
+            $.ajax({
+                url: 'http://localhost/web-sate/admin/changememberactive',
+                type: 'post',
+                data: {
+                    memberId: memberId,
+                    memberActive: 0
+                },
+                success: function () {
+                    document.location.href = "http://localhost/web-sate/admin/list";
+                }
+            });
+
+        } else {
+
+            $.ajax({
+                url: 'http://localhost/web-sate/admin/changememberactive',
+                type: 'post',
+                data: {
+                    memberId: memberId,
+                    memberActive: 1
+                },
+                success: function () {
+                    document.location.href = "http://localhost/web-sate/admin/list";
+                }
+            });
+
+        }
+    })
+});
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
 });
