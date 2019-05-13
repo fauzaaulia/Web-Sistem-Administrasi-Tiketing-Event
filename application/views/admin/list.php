@@ -33,7 +33,7 @@
                                         <td><?= $u['phone']; ?></td>
                                         <td>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" <?= member_active($u['is_active']); ?>>
+                                                <input class="form-check-input member_active" id="member_active" data-member="<?= $u['id']; ?>" type="checkbox" <?= member_active($u['id']); ?>>
                                             </div>
                                         </td>
                                         <td>
