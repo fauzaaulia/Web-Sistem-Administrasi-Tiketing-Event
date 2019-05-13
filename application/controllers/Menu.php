@@ -17,6 +17,7 @@ class Menu extends CI_Controller
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
         $this->form_validation->set_rules('menu', 'Menu', 'required');
+        $this->form_validation->set_rules('priority', 'Priority Number', 'required|decimal');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
