@@ -36,7 +36,7 @@ class Events extends CI_Controller
             $data = [
                 'id' => $this->input->post('id'),
                 'user_id' => $this->input->post('user_id'),
-                'name' => $this->input->post('name'),
+                'event' => $this->input->post('name'),
                 'date' => $this->input->post('date'),
                 'location' => $this->input->post('location'),
                 'address' => $this->input->post('address'),
