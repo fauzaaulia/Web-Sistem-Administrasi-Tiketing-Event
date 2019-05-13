@@ -50,10 +50,10 @@ INSERT INTO `events` (`id`, `user_id`, `name`, `date`, `location`, `address`, `p
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ticket`
+-- Struktur dari tabel `tickets`
 --
 
-CREATE TABLE `ticket` (
+CREATE TABLE `tickets` (
   `id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
