@@ -21,7 +21,8 @@ class Menu_model extends CI_Model
     {
         $data = [
             "id" => $this->input->post('id', true),
-            "menu" => $this->input->post('menu', true)
+            "menu" => $this->input->post('menu', true),
+            "priority" => $this->input->post('priority', true)
         ];
 
         $this->db->where('id', $this->input->post('id'));
