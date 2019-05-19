@@ -17,7 +17,7 @@ class Menu extends CI_Controller
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
         $this->form_validation->set_rules('menu', 'Menu', 'required');
-        $this->form_validation->set_rules('priority', 'Priority Number', 'required|decimal');
+        $this->form_validation->set_rules('priority', 'Priority Number', 'required|integer');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -26,7 +26,10 @@ class Menu extends CI_Controller
             $this->load->view('menu/index', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->db->insert('user_menu', ['menu' => $this->input->post('menu')]);
+            $this->db->insert('user_menu', [
+                'menu' => $this->input->post('menu'),
+                'priority' => $this->input->post('priority')
+            ]);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New menu added!</div>');
             redirect('menu');
         }
