@@ -65,7 +65,7 @@
 
 
 
-                $('.form-check-input').on('click', function() {
+                $('.role-access1').on('click', function() {
                     const menuId = $(this).data('menu');
                     const roleId = $(this).data('role');
 
