@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Bulan Mei 2019 pada 11.52
+-- Waktu pembuatan: 11 Bulan Mei 2019 pada 12.12
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.4
 
@@ -50,14 +50,14 @@ INSERT INTO `events` (`id`, `user_id`, `name`, `date`, `location`, `address`, `p
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tiket`
+-- Struktur dari tabel `tickets`
 --
 
-CREATE TABLE `tiket` (
+CREATE TABLE `tickets` (
   `id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
-  `nama` varchar(128) NOT NULL,
-  `harga` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `price` int(11) NOT NULL,
   `is_active` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -88,6 +88,7 @@ INSERT INTO `user` (`id`, `name`, `email`, `phone`, `image`, `password`, `role_i
 (6, 'Doddy Ferdiansyah', 'doddy@gmail.com', '085243998634', 'profile.jpg', '$2y$10$FhGzXwwTWLN/yonJpDLR0.nKoeWlKWBoRG9bsk0jOAgbJ007XzeFO', 2, 1, 1552285263),
 (11, 'Sandhika Galih', 'sandhikagalih@gmail.com', '082225678112', 'default.jpg', '$2y$10$0QYEK1pB2L.Rdo.ZQsJO5eeTSpdzT7PvHaEwsuEyGSs0J1Qf5BoSq', 2, 1, 1553151354),
 (12, 'Fauza Aulia', 'fauzaauliia@gmail.com', '081215212066', 'F7-02.png', '$2y$10$fnqv3SVJorc7VVXn3bM7t.G3sZnXg4zGPNRnNkU1mV/Db9NKdgbxO', 1, 1, 1556982081),
+(14, 'Fauza Aulia', 'exyezet@gmail.com', '', 'default.jpg', '$2y$10$fNCPxbRLzS7XRRfYEk/okO1cnnbLG/MPW9kpnsvSsWU/2e9nkU0k.', 2, 0, 1557406163),
 (15, 'Fauza Aulia', 'exsyezet@gmail.com', '', '4c73cda4757a2467f193bbc3dea08b76.png', '$2y$10$T6qaeSRt9DBe.Itu7Ex/IeslWf5mQCyESIuozf8rmqvfCOjRIpNJm', 2, 1, 1557406219);
 
 -- --------------------------------------------------------
@@ -221,9 +222,9 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tiket`
+-- Indeks untuk tabel `ticket`
 --
-ALTER TABLE `tiket`
+ALTER TABLE `ticket`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -273,9 +274,9 @@ ALTER TABLE `events`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `tiket`
+-- AUTO_INCREMENT untuk tabel `ticket`
 --
-ALTER TABLE `tiket`
+ALTER TABLE `ticket`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --

@@ -37,3 +37,16 @@ function check_access($role_id, $menu_id)
         return "checked='checked'";
     }
 }
+
+function member_active($id)
+{
+    $ci = get_instance();
+
+    $ci->db->where('id', $id);
+    $ci->db->where('is_active', 1);
+    $result = $ci->db->get('user');
+
+    if ($result->num_rows() > 0) {
+        return "checked='checked'";
+    }
+}

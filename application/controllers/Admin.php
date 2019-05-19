@@ -103,4 +103,42 @@ class Admin extends CI_Controller
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Access Changed!</div>');
     }
+
+    public function list()
+    {
+        $data['title'] = 'Members';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['users'] = $this->db->get_where('user',  ['role_id' => 2])->result_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/list', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function memberDelete($id)
+    {
+        $this->db->delete('user', ['id' => $id]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Member deleted!</div>');
+        redirect('admin/list');
+    }
+
+    public function changememberActive()
+    {
+        $member_id = $this->input->post('memberId');
+        $member_active = $this->input->post('memberActive');
+
+        $data = [
+            'id' => $member_id,
+            'is_active' => $member_active
+        ];
+
+        $this->db->set('is_active', $data['is_active']);
+        $this->db->where('id', $data['id']);
+        $this->db->update('user'); // gives UPDATE mytable SET field = field+1 WHERE id = 2
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Member active Changed!</div>');
+    }
 }

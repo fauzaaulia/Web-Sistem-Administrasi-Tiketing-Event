@@ -8,7 +8,11 @@
 
     <div class="row">
         <div class="col-lg-6">
-            <?= form_error('menu', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?php if (validation_errors()) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= validation_errors(); ?>
+                </div>
+            <?php endif; ?>
 
             <?= $this->session->flashdata('message'); ?>
 
@@ -19,6 +23,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Menu</th>
+                        <th scope="col">Priority</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -28,6 +33,7 @@
                         <tr>
                             <th scope="row"><?= $i; ?></th>
                             <td><?= $m['menu']; ?></td>
+                            <td><?= $m['priority']; ?></td>
                             <td>
                                 <a href="<?= base_url(); ?>menu/edit/<?= $m['id']; ?>" data-toggle="modal" data-target="#menuModal" class="badge badge-success showModalEdit" data-id="<?= $m['id']; ?>">edit</a>
                                 <a href="<?= base_url(); ?>menu/delete/<?= $m['id']; ?>" class="badge badge-danger" onclick="return confirm('Are you sure want to delete the menu?');">delete</a>
@@ -68,6 +74,10 @@
                     <div class="form-group">
                         <label for="menu"> Menu name </label>
                         <input type="text" class="form-control" id="menu" name="menu" placeholder="Menu name">
+                    </div>
+                    <div class="form-group">
+                        <label for="menu"> Prioryty </label>
+                        <input type="text" class="form-control" id="priority" name="priority" placeholder="Priority Number">
                     </div>
                 </div>
                 <div class="modal-footer">
