@@ -33,11 +33,11 @@
                                         <td><?= $u['phone']; ?></td>
                                         <td>
                                             <div class="form-check">
-                                                <input class="form-check-input member_active" id="member_active" data-member="<?= $u['id']; ?>" type="checkbox" <?= member_active($u['id']); ?>>
+                                                <input class="form-check-input member_active" id="member_active" data-member="<?= $u['id']; ?>" type="checkbox" <?= user_active($u['id']); ?>>
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="<?= base_url(); ?>admin/memberdelete/<?= $u['id']; ?>" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete the ticket?');">delete</a>
+                                            <a href="<?= base_url(); ?>admin/memberdelete/<?= $u['id']; ?>" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete the member?');">delete</a>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>

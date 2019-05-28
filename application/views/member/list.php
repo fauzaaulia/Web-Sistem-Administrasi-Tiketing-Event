@@ -27,7 +27,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Access</th>
+                                    <th>Active</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -41,11 +41,12 @@
                                         <td><?= $u['phone']; ?></td>
                                         <td>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" <?= member_active($u['is_active']); ?>>
+                                                <input class="form-check-input seller_active" id="seller_active" data-seller="<?= $u['id']; ?>" type="checkbox" <?= user_active($u['id']); ?>>
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="<?= base_url(); ?>admin/memberdelete/<?= $u['id']; ?>" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete the ticket?');">delete</a>
+                                            <a href="<?= base_url(); ?>member/selleraccess/<?= $u['id']; ?>" class="badge badge-warning">access</a>
+                                            <a href="<?= base_url(); ?>member/sellerdelete/<?= $u['id']; ?>" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete the seller?');">delete</a>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>
