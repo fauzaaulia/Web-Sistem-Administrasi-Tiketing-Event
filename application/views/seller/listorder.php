@@ -23,27 +23,19 @@
                                     <th>Ticket</th>
                                     <th>Event</th>
                                     <th>Waiter</th>
+                                    <th>Tanggal</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $i = 1; ?>
-                                <?php foreach ($order as $o) : ?>
-                                    <tr>
-                                        <th scope="row"><?= $i; ?></th>
-                                        <td><?= $o['name']; ?></td>
-                                        <td><?= $o['email']; ?></td>
-                                        <td><?= $o['phone']; ?></td>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" <?= member_active($o['is_active']); ?>>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="<?= base_url(); ?>admin/memberdelete/<?= $o['id']; ?>" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete the ticket?');">delete</a>
-                                        </td>
-                                    </tr>
-                                    <?php $i++; ?>
-                                <?php endforeach; ?>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>O-1281</td>
+                                    <td>Aulia</td>
+                                    <td>SO7</td>
+                                    <td>Ossmanda</td>
+                                    <td>Fauza</td>
+                                    <td>20/04/2019</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
