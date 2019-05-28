@@ -62,7 +62,7 @@ class Member extends CI_Controller
 
             $this->_sendEmail('activation');
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation! your account has been created. Please activate your account</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation! your SELLER account has been created. The notice will be send to email your seller</div>');
             redirect('member/list');
         }
     }
@@ -86,12 +86,36 @@ class Member extends CI_Controller
         $this->email->to($this->input->post('email'));
 
         if ($type == 'activation') {
-            $this->email->subject('Account Verification');
-            $this->email->message('Berikut adalah inforasi akun kamu. <br> email :' . $this->input->post('email') . '<br> password :' . $this->input->post('password2') . '<br> <br>Silahkan login <a href="' . base_url('/auth') . '">disini</a>');
+            $this->email->subject('Seller - Notification : S.A.T.E');
+            $this->email->message('Kamu telah didaftarkan sebagai seller di <b>Sistem Administrasi Ticketing Event</b> oleh' .  $this->db->get('user', ['email' => $this->session->userdata('email')])->row_array() . ' <br>Berikut adalah informasi akun kamu. <br> email :' . $this->input->post('email') . '<br> password :' . $this->input->post('password2') . '<br> <br>Silahkan login <a href="' . base_url('/auth') . '">disini</a>');
             $this->email->send();
         } else {
             echo $this->email->print_debugger();
             die;
         }
+    }
+
+    public function sellerDelete($id)
+    {
+        $this->db->delete('user', ['id' => $id]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Seller deleted!</div>');
+        redirect('member/list');
+    }
+
+    public function changeSellerActive()
+    {
+        $seller_id = $this->input->post('sellerId');
+        $seller_active = $this->input->post('sellerActive');
+
+        $data = [
+            'id' => $seller_id,
+            'is_active' => $seller_active
+        ];
+
+        $this->db->set('is_active', $data['is_active']);
+        $this->db->where('id', $data['id']);
+        $this->db->update('user');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Seller active Changed!</div>');
     }
 }
