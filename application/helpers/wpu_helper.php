@@ -38,7 +38,7 @@ function check_access($role_id, $menu_id)
     }
 }
 
-function member_active($id)
+function user_active($id)
 {
     $ci = get_instance();
 

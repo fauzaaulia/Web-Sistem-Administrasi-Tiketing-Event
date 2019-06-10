@@ -280,6 +280,44 @@ $(function () {
     })
 });
 
+// Seller Active----------------
+$(function () {
+    $('.seller_active').on('click', function () {
+
+        const sellerId = $(this).data('seller');
+
+        if ($('.seller_active').attr('checked') == "checked") {
+
+            $.ajax({
+                url: 'http://localhost/web-sate/member/changeselleractive',
+                type: 'post',
+                data: {
+                    sellerId: sellerId,
+                    sellerActive: 0
+                },
+                success: function () {
+                    document.location.href = "http://localhost/web-sate/member/list";
+                }
+            });
+
+        } else {
+
+            $.ajax({
+                url: 'http://localhost/web-sate/member/changeselleractive',
+                type: 'post',
+                data: {
+                    sellerId: sellerId,
+                    sellerActive: 1
+                },
+                success: function () {
+                    document.location.href = "http://localhost/web-sate/member/list";
+                }
+            });
+
+        }
+    })
+});
+
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 });
