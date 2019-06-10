@@ -106,7 +106,7 @@ class Admin extends CI_Controller
 
     public function list()
     {
-        $data['title'] = 'Members';
+        $data['title'] = 'List Member';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['users'] = $this->db->get_where('user',  ['role_id' => 2])->result_array();
