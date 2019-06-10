@@ -8,8 +8,6 @@
         <div class="col-lg-12">
             <?= $this->session->flashdata('message'); ?>
 
-            <a href="" class="btn btn-primary mb-3 addSellerButton" data-toggle="modal" data-target="#menuModal">Add New Seller</a>
-
             <!-- DataTales Example -->
             <div class="card mb-4">
                 <div class="card-body">
