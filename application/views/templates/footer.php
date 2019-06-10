@@ -47,7 +47,7 @@
 
             <!-- Custom scripts for all pages-->
             <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
-            <script src="<?= base_url('assets/'); ?>js/my-custom.js"></script>
+            <script src="<?= base_url('assets/'); ?>js/my-custom.js?t=<?= time() ?>"></script>
 
             <!-- Page level plugins -->
             <script src="<?= base_url('assets/'); ?>vendor/datatables/jquery.dataTables.min.js"></script>
