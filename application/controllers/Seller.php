@@ -26,17 +26,56 @@ class Seller extends CI_Controller
         $data['title'] = 'Order';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('seller/order', $data);
-        $this->load->view('templates/footer');
+        $this->load->model('Tickets_model', 'ticket');
+        $this->load->model('Seller_model', 'order');
+
+        $data['event'] = $this->db->get('events')->result_array();
+        $data['ticket'] = $this->ticket->getDataTicket();
+
+        $this->form_validation->set_rules('name', 'Name', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('phone', 'Phone', 'required|numeric');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('seller/order', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->order->addOrder();
+            $this->session->set_flashdata('flash', 'Ditambahkan');
+            redirect('seller/order');
+        }
     }
+
+    // public function listTicket()
+    // {
+    //     $this->load->model('Tickets_model', 'ticket');
+    //     $this->load->model('Events_model', 'event');
+
+    //     $event_id = $this->input->post('event_id');
+
+    //     $ticket = $this->ticket->viewByEvent($event_id);
+
+    //     $lists = "<option value=''>Pilih </option>";
+
+    //     foreach ($ticket as $tk) {
+    //         $lists .= "<option value='" . $tk->id . "'>" . $tk->ticket . "</option>"
+    //     }
+
+    //     $callback = array( 'ticket'=>$lists);
+
+    //     echo json_encode($callback);
+    // }
 
     public function listorder()
     {
         $data['title'] = 'List Order';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->model('Seller_model', 'order');
+        $data['listorder'] = $this->order->getListOrder();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

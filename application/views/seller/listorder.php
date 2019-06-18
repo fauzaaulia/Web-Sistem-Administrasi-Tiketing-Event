@@ -25,15 +25,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>O-1281</td>
-                                    <td>Aulia</td>
-                                    <td>SO7</td>
-                                    <td>Ossmanda</td>
-                                    <td>Fauza</td>
-                                    <td>20/04/2019</td>
-                                </tr>
+                                <?php $i = 1; ?>
+                                <?php foreach ($listorder as $lo) : ?>
+                                    <tr>
+                                        <th scope="row"><?= $i; ?></th>
+                                        <td><?= $lo['id_order']; ?></td>
+                                        <td><?= $lo['buyer']; ?></td>
+                                        <td><?= $lo['ticket']; ?></td>
+                                        <td><?= $lo['event']; ?></td>
+                                        <td><?= $lo['waiter']; ?></td>
+                                        <td><?= $lo['datetime']; ?></td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

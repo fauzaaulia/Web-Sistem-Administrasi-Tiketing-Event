@@ -38,6 +38,19 @@ function check_access($role_id, $menu_id)
     }
 }
 
+function checkseller_access($role_id, $menu_id)
+{
+    $ci = get_instance();
+
+    $ci->db->where('user_id', $role_id);
+    $ci->db->where('event_id', $event_id);
+    $result = $ci->db->get('user_access_event');
+
+    if ($result->num_rows() > 0) {
+        return "checked='checked'";
+    }
+}
+
 function user_active($id)
 {
     $ci = get_instance();
@@ -49,4 +62,27 @@ function user_active($id)
     if ($result->num_rows() > 0) {
         return "checked='checked'";
     }
+}
+
+function get_event($id)
+{
+    $ci = get_instance();
+    $user_id = $ci->session->userdata('id');
+
+    $ci->db->where('id', $id);
+    $ci->db->where('user_id', $user_id);
+    $result = $ci->db->get('events');
+
+    return $result->result_array();
+}
+
+function get_ticket($id)
+{
+    $ci = get_instance();
+
+    $ci->db->where('id', $id);
+    $ci->db->where('event_id', $event_id);
+    $result = $ci->db->get('tickets');
+
+    return $result->result_array();
 }

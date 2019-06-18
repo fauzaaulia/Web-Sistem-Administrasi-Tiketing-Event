@@ -25,6 +25,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th>Name</th>
+                                    <th>Event</th>
                                     <th>Total</th>
                                     <th>Action</th>
                                 </tr>
@@ -34,7 +35,8 @@
                                 <?php foreach ($ticket as $tk) : ?>
                                     <tr>
                                         <th scope="row"><?= $i; ?></th>
-                                        <td><a data-toggle="tooltip" data-placement="right" title="Nama Event"><?= $tk['ticket']; ?></a></td>
+                                        <td><a data-toggle="tooltip" data-placement="right" title="price: <?= $tk['price']; ?>"><?= $tk['ticket']; ?></a></td>
+                                        <td><a data-toggle="tooltip" data-placement="right" title="date: <?= $tk['date']; ?>"><?= $tk['event']; ?></a></td>
                                         <td><?= $tk['total']; ?></td>
                                         <td>
                                             <a href="<?= base_url(); ?>tickets/info/<?= $tk['id']; ?>" class="badge badge-info showInfoTicketModal" data-toggle="modal" data-target="#infoTicketModal" data-id="<?= $tk['id']; ?>">info</a>

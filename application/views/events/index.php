@@ -38,7 +38,9 @@
                                         <th scope="row"><?= $i; ?></th>
                                         <td><?= $ev['event']; ?></td>
                                         <td><?= $ev['date']; ?></td>
-                                        <td><?= $ev['location']; ?></td>
+                                        <td>
+                                            <a data-toggle="tooltip" data-placement="right" title="<?= $ev['address']; ?>"><?= $ev['location']; ?></a>
+                                        </td>
                                         <td>
                                             <a href="<?= base_url(); ?>events/info/<?= $ev['id']; ?>" class="badge badge-info infoEventModal" data-toggle="modal" data-target="#infoEventModal" data-id="<?= $ev['id']; ?>">info</a>
 

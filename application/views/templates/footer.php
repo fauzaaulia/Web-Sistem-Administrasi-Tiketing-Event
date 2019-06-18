@@ -57,6 +57,10 @@
             <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
             <script src="<?= base_url('assets/'); ?>js/bootstrap-datepicker.js"></script>
 
+            <!-- Page level plugins -->
+            <script src="<?= base_url('assets/'); ?>vendor/chart.js/Chart.min.js"></script>
+            <script src="<?= base_url('assets/'); ?>js/demo/chart-bar-demo.js"></script>
+
             <script>
                 $('.custom-file-input').on('change', function() {
                     let fileName = $(this).val().split('\\').pop();

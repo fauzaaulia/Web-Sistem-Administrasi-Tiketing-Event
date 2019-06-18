@@ -13,6 +13,9 @@ class Admin extends CI_Controller
     {
         $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->model('Admin_model', 'Admin');
+        $data['totu'] = $this->Admin->getTotalUser();
+        $data['totev'] = $this->Admin->getTotalEvent();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

@@ -3,6 +3,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Events_model extends CI_Model
 {
+
+    public function getAllEvent()
+    {
+        return $this->db->get('events')->result();
+    }
+
     public function getEventById($id)
     {
         return $this->db->get_where('events', ['id' => $id])->row_array();

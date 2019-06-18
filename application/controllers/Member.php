@@ -47,12 +47,15 @@ class Member extends CI_Controller
         } else {
             $email = $this->input->post('email', true);
             $phone = $this->input->post('phone', true);
+            $name = $this->input->post('name', true);
+            $password = $this->input->post('password1');
             $data = [
-                'name' => htmlspecialchars($this->input->post('name', true)),
+                'parent_id' => 12,
+                'name' => htmlspecialchars($name),
                 'email' => htmlspecialchars($email),
                 'phone' => htmlspecialchars($phone),
                 'image' => 'default.jpg',
-                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'password' => password_hash($password, PASSWORD_DEFAULT),
                 'role_id' => 3,
                 'is_active' => 1,
                 'date_created' => time()
@@ -117,5 +120,23 @@ class Member extends CI_Controller
         $this->db->update('user');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Seller active Changed!</div>');
+    }
+
+    public function sellerAccess($user_id)
+    {
+        $data['title'] = 'Role Access';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['role'] = $this->db->get_where('user', ['id' => $user_id])->row_array();
+
+        $id = $this->session->userdata('id');
+        $this->db->where('user_id ==', $id);
+        $data['events'] = $this->db->get('events')->result_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('member/selleraccess', $data);
+        $this->load->view('templates/footer');
     }
 }
