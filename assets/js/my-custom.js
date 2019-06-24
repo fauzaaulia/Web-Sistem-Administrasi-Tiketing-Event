@@ -113,7 +113,7 @@ $(function (Event) {
         $('#eventModalLabel').html('Add New Event');
         $('.modal-footer button[type=submit]').html('Add');
         $('#id').val('');
-        $('#user_id').val(12);
+        $('#user_id').val();
         $('#name').val('');
         $('#date').val('');
         $('#location').val('');

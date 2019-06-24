@@ -17,7 +17,7 @@ class Events extends CI_Controller
 
         $this->load->model('Events_model');
 
-        $data['event'] = $this->db->get_where('events')->result_array();
+        $data['event'] = $this->db->get_where('events', ['user_id' => $this->session->userdata('id')])->result_array();
 
         $this->form_validation->set_rules('user_id', 'User id', 'required');
         $this->form_validation->set_rules('name', 'Name', 'required');
