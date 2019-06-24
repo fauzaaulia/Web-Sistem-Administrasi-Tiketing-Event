@@ -78,7 +78,6 @@
             </div>
             <form action="<?= base_url('events'); ?>" method="post">
                 <div class="modal-body">
-                    <?= var_dump($user_id['id']) ?>
                     <input type="hidden" class="form-control" id="id" name="id">
                     <input type="hidden" class="form-control" id="user_id" name="user_id" value="<?= $user_id['id']; ?>">
                     <div class="form-group">

@@ -26,6 +26,21 @@ class Tickets_model extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    public function getDataTicketbyUserId()
+    {
+        $this->db->select('*');
+        $this->db->from('tickets');
+        $this->db->join('events', 'events.id = tickets.event_id');
+        $this->db->where('user_id', $this->session->userdata('id'));
+        $query = $this->db->get()->result_array();
+        //$query = $this->db->get_where('events', ['events.id' => $this->session->userdata('id')]);
+
+        return $query;
+
+        // Produces:
+        // SELECT * FROM blogs JOIN comments ON comments.id = blogs.id
+    }
+
     public function updateTicket()
     {
         $data = [
