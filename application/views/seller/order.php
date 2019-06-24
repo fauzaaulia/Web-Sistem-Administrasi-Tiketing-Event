@@ -39,9 +39,7 @@
                             <label for="ticket" class="col-sm-2 col-form-label">Choose Ticket</label>
                             <div class="col-sm-10">
                                 <select class="form-control" id="ticket" name="ticket">
-                                    <?php foreach ($ticket as $tk) : ?>
-                                        <option value="<?= $tk['id']; ?>"><?= $tk['ticket']; ?></option>
-                                    <?php endforeach; ?>
+                                    <option value="">Pilih</option>
                                 </select>
                             </div>
                         </div>
@@ -72,6 +70,37 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() { // Ketika halaman sudah siap (sudah selesai di load)
+
+            $("#event").change(function() { // Ketika user mengganti atau memilih data event
+                $("#ticket").hide(); // Sembunyikan dulu combobox ticket nya; // Tampilkan loadingnya
+
+                $.ajax({
+                    type: "POST", // Method pengiriman data bisa dengan GET atau POST
+                    url: "<?= base_url("seller/listTicket"); ?>", // Isi dengan url/path file php yang dituju
+                    data: {
+                        event: $("#event").val()
+                    }, // data yang akan dikirim ke file yang dituju
+                    dataType: "json",
+                    beforeSend: function(e) {
+                        if (e && e.overrideMimeType) {
+                            e.overrideMimeType("application/json;charset=UTF-8");
+                        }
+                    },
+                    success: function(response) { // Ketika proses pengiriman berhasil
+                        // set isi dari combobox ticket
+                        // lalu munculkan kembali combobox ticketnya
+                        $("#ticket").html(response.ticket).show();
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) { // Ketika ada error
+                        alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+                    }
+                });
+            });
+        });
+    </script>
 
 </div>
 <!-- /.container-fluid -->

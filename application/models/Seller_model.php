@@ -45,5 +45,9 @@ class Seller_model extends CI_Model
         ];
 
         $this->db->insert('order', $data);
+
+        $this->db->where('id', $data['ticket_id']);
+        $this->db->set('total', 'total-1', FALSE);
+        $this->db->update('tickets');
     }
 }

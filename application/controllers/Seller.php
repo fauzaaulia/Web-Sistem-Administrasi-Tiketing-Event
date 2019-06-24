@@ -49,25 +49,22 @@ class Seller extends CI_Controller
         }
     }
 
-    // public function listTicket()
-    // {
-    //     $this->load->model('Tickets_model', 'ticket');
-    //     $this->load->model('Events_model', 'event');
+    public function listTicket()
+    {
+        $event = $this->input->post('event');
 
-    //     $event_id = $this->input->post('event_id');
+        $this->load->model('Tickets_model', 'ticket');
+        $ticket = $this->ticket->viewByEvent($event);
+        $lists = "<option value=''>Pilih </option>";
 
-    //     $ticket = $this->ticket->viewByEvent($event_id);
+        foreach ($ticket as $tk) {
+            $lists .= "<option value='" . $tk->id . "'>" . $tk->ticket . "</option>";
+        }
 
-    //     $lists = "<option value=''>Pilih </option>";
+        $callback = array('ticket' => $lists);
 
-    //     foreach ($ticket as $tk) {
-    //         $lists .= "<option value='" . $tk->id . "'>" . $tk->ticket . "</option>"
-    //     }
-
-    //     $callback = array( 'ticket'=>$lists);
-
-    //     echo json_encode($callback);
-    // }
+        echo json_encode($callback);
+    }
 
     public function listorder()
     {

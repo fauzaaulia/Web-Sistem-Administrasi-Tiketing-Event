@@ -34,7 +34,6 @@ class Tickets extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
-                'id' => $this->input->post('id'),
                 'event_id' => $this->input->post('event_id'),
                 'ticket' => $this->input->post('ticket'),
                 'price' => $this->input->post('price'),
