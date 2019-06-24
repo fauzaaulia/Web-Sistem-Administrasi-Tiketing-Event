@@ -52,6 +52,7 @@ class Events extends CI_Controller
     public function delete($id)
     {
         $this->db->delete('events', ['id' => $id]);
+        $this->db->delete('tickets', ['event_id' => $id]);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Event Deleted!</div>');
         redirect('events');
     }
