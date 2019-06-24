@@ -46,7 +46,7 @@
 
                                             <a href="<?= base_url(); ?>events/edit/<?= $ev['id']; ?>" class="badge badge-success showModalEditEvent" data-toggle="modal" data-target="#eventModal" data-id="<?= $ev['id']; ?>">edit</a>
 
-                                            <a href="<?= base_url(); ?>events/delete/<?= $ev['id']; ?>" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete the event?');">delete</a>
+                                            <a href="<?= base_url(); ?>events/delete/<?= $ev['id']; ?>" class="badge badge-danger" onclick="return confirm('All tickets for this event will be deleted. Are you sure you want to delete the event?');">delete</a>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>
