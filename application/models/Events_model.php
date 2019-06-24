@@ -9,6 +9,11 @@ class Events_model extends CI_Model
         return $this->db->get('events')->result();
     }
 
+    public function getEventByUser()
+    {
+        return $this->db->get_where('events', ['id_user' => 12])->result_array();
+    }
+
     public function getEventById($id)
     {
         return $this->db->get_where('events', ['id' => $id])->row_array();

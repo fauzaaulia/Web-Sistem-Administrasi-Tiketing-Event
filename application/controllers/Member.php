@@ -26,7 +26,7 @@ class Member extends CI_Controller
         $data['title'] = 'List Seller';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['users'] = $this->db->get_where('user',  ['role_id' => 3])->result_array();
+        $data['users'] = $this->db->get_where('user',  ['role_id' => 3, 'parent_id' => $this->session->userdata('id')])->result_array();
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
