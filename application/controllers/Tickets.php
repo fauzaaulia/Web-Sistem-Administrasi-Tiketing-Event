@@ -16,8 +16,9 @@ class Tickets extends CI_Controller
         $data['user_id'] = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
 
         $this->load->model('Tickets_model', 'ticket');
+        $this->load->model('Events_model', 'event');
 
-        $data['event'] = $this->db->get('events')->result_array();
+        $data['event'] = $this->event->getEventByUser();
         $data['ticket'] = $this->ticket->getDataTicketbyUserId();
 
         $this->form_validation->set_rules('event_id', 'event_id', 'required');
