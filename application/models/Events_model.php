@@ -14,6 +14,11 @@ class Events_model extends CI_Model
         return $this->db->get_where('events', ['user_id' => $this->session->userdata('id')])->result_array();
     }
 
+    public function getEventByParentUser()
+    {
+        return $this->db->get_where('events', ['user_id' => $this->session->userdata('parent_id')])->result_array();
+    }
+
     public function getEventById($id)
     {
         return $this->db->get_where('events', ['id' => $id])->row_array();

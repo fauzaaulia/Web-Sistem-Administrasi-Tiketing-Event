@@ -27,9 +27,9 @@ class Seller extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->model('Tickets_model', 'ticket');
-        $this->load->model('Seller_model', 'order');
+        $this->load->model('Events_model', 'order');
 
-        $data['event'] = $this->db->get('events')->result_array();
+        $data['event'] = $this->order->getEventByParentUser();
         $data['ticket'] = $this->ticket->getDataTicket();
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
