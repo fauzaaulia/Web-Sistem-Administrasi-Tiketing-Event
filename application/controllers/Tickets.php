@@ -11,7 +11,7 @@ class Tickets extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'List Tickets';
+        $data['title'] = 'Tickets';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user_id'] = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
 
