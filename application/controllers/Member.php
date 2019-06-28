@@ -49,8 +49,9 @@ class Member extends CI_Controller
             $phone = $this->input->post('phone', true);
             $name = $this->input->post('name', true);
             $password = $this->input->post('password1');
+            $id = $this->session->userdata('id', true);
             $data = [
-                'parent_id' => 12,
+                'parent_id' => $id,
                 'name' => htmlspecialchars($name),
                 'email' => htmlspecialchars($email),
                 'phone' => htmlspecialchars($phone),
