@@ -13,6 +13,9 @@ class Member extends CI_Controller
     {
         $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->model('Member_model', 'Member');
+        $data['tosel'] = $this->Member->getTotalSeller();
+        $data['totev'] = $this->Member->getTotalEventByUser();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
