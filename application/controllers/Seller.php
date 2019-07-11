@@ -28,6 +28,7 @@ class Seller extends CI_Controller
 
         $this->load->model('Tickets_model', 'ticket');
         $this->load->model('Events_model', 'order');
+        $this->load->model('Seller_model', 'seller');
 
         $data['event'] = $this->order->getEventByParentUser();
         $data['ticket'] = $this->ticket->getDataTicket();
@@ -43,7 +44,7 @@ class Seller extends CI_Controller
             $this->load->view('seller/order', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->order->addOrder();
+            $this->seller->addOrder();
             $this->session->set_flashdata('flash', 'Ditambahkan');
             redirect('seller/order');
         }
